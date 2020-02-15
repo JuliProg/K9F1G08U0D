@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace K9F1G08U0D
 {
-    // Ця dll-ка компаную всі складові чіпа K9F1G08U0D між собою (через DI інтерфейс ) і реалізує DI інтерфейс до NAND_Prog.exe
+    // This dll compiles all the components of the K9F1G08U0D chip (via the DI interface) and implements the DI interface to NAND_Prog.exe
 
 
 
