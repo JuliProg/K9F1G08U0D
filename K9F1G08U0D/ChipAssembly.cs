@@ -1,4 +1,4 @@
-п»їusing NAND_Prog;
+using NAND_Prog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -14,56 +14,56 @@ namespace K9F1G08U0D
 
     #region Help
     /*  
-    Р†РЅС‚РµСЂС„РµР№СЃ , СЏРєРёР№ С‚РѕСЂС‡РёС‚СЊ Р· NAND_Prog (РІС–РЅ РЅРµР·РјС–РЅРЅРёР№ (СѓС‚РІРѕСЂСЋС”С‚СЊСЃСЏ РїСЂРё РєРѕРїРјС–Р»СЏС†С–С— NAND_Prog.РµС…Рµ)):
-      РѕР±РѕРІСЏР·РєРѕРІС– РґР»СЏ Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Рё :
+    Інтерфейс , який торчить з NAND_Prog (він незмінний (утворюється при копміляції NAND_Prog.ехе)):
+      обовязкові для задоволення імпорти :
 
-       [Import("NAND_Prog.Organization", typeof(MemoryOrg))]         - РѕСЂРіР°РЅС–Р·Р°С†С–СЏ РїР°РјСЏС‚С–
+       [Import("NAND_Prog.Organization", typeof(MemoryOrg))]         - організація памяті
 
-       [Import("NAND_Prog.Bytes per page", typeof(MemoryOrg))]       - Р±Р°Р№С‚ РІ СЃС‚РѕСЂС–РЅС†С–
+       [Import("NAND_Prog.Bytes per page", typeof(MemoryOrg))]       - байт в сторінці
 
-       [Import("NAND_Prog.Spare bytes per page", typeof(MemoryOrg))] - РґРѕРґР°С‚РєРѕРІРёС… Р±Р°Р№С‚ РІ СЃС‚РѕСЂС–РЅС†С–
+       [Import("NAND_Prog.Spare bytes per page", typeof(MemoryOrg))] - додаткових байт в сторінці
 
-       [Import("NAND_Prog.Pages per block", typeof(MemoryOrg))]      - РєС–Р»СЊРєС–СЃС‚СЊ СЃС‚РѕСЂС–РЅРѕРє РІ Р±Р»РѕС†С–
+       [Import("NAND_Prog.Pages per block", typeof(MemoryOrg))]      - кількість сторінок в блоці
 
-       [Import("NAND_Prog.Bloks per LUN", typeof(MemoryOrg))]        - РєС–Р»СЊРєС–СЃС‚СЊ Р±Р»РѕРєС–РІ РІ РЎР•
+       [Import("NAND_Prog.Bloks per LUN", typeof(MemoryOrg))]        - кількість блоків в СЕ
 
-       [Import("NAND_Prog.LUNs", typeof(MemoryOrg))]                 - РєС–Р»СЊРєС–СЃС‚СЊ РЎР• РІ С‡С–РїС–
+       [Import("NAND_Prog.LUNs", typeof(MemoryOrg))]                 - кількість СЕ в чіпі
 
-       [Import("NAND_Prog.Column address cycles", typeof(MemoryOrg))] - РєС–Р»СЊРєС–СЃС‚СЊ С†РёРєР»С–РІ РґР»СЏ Р°РґСЂРµСЃР°С†С–С— РєРѕР»РѕРЅРѕРє
+       [Import("NAND_Prog.Column address cycles", typeof(MemoryOrg))] - кількість циклів для адресації колонок
 
-       [Import("NAND_Prog.Row address cycles", typeof(MemoryOrg))]    - РєС–Р»СЊРєС–СЃС‚СЊ С†РёРєР»С–РІ РґР»СЏ Р°РґСЂРµСЃР°С†С–С— СЂСЏРґРєС–РІ
-
-
-
-       [Import("NAND_Prog.Device Manufacturing" , typeof(Chip))]      - РІРёСЂРѕР±РЅРёРє С‡С–РїР°
-
-       [Import("NAND_Prog.Chip name", typeof(Chip))]                  - С–РјСЏ С‡С–РїР°
+       [Import("NAND_Prog.Row address cycles", typeof(MemoryOrg))]    - кількість циклів для адресації рядків
 
 
-       <int>("NAND_Prog.Bad Block Mark")                              - РїСЂРёР·РЅР°Рє РќР• bad blok
+
+       [Import("NAND_Prog.Device Manufacturing" , typeof(Chip))]      - виробник чіпа
+
+       [Import("NAND_Prog.Chip name", typeof(Chip))]                  - імя чіпа
+
+
+       <int>("NAND_Prog.Bad Block Mark")                              - признак НЕ bad blok
 
 
         
-       [Import("ChipDependency", typeof(List<string>))]               - Р·Р°Р»РµР¶РЅРѕСЃС‚С– С‡С–РїР° (СЃРїРёСЃРѕРє dll-РѕРє Р· СЏРєРёС… СЃРєР»Р°РґР°С”С‚СЊСЃСЏ С‡С–Рї)
+       [Import("ChipDependency", typeof(List<string>))]               - залежності чіпа (список dll-ок з яких складається чіп)
 
-      РЅРµ РѕР±РѕРІСЏР·РєРѕРІС– С–РјРїРѕСЂС‚Рё :
+      не обовязкові імпорти :
 
-        [ImportMany("NAND_Prog.Chip", typeof(Operation))]             - РЅР°Р±С–СЂ РѕРїРµСЂР°С†С–Р№ РґР»СЏ С†СЊРѕРіРѕ С‡С–РїР°            
+        [ImportMany("NAND_Prog.Chip", typeof(Operation))]             - набір операцій для цього чіпа            
 
-        [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]          - РЅР°Р±С–СЂ РґРѕРґР°С‚РєРѕРІРёС… С‡Р°СЃС‚РёРЅ , СЏРєС– С” РІ СЃРєР»Р°РґС– С‡С–РїР° (РЅР°РїСЂРёРєР»Р°Рґ ID Register , Status Register С– С–РЅС€.)
+        [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]          - набір додаткових частин , які є в складі чіпа (наприклад ID Register , Status Register і інш.)
 
-        [Import("NAND_Prog.activeSR", typeof(SRregister), AllowDefault = true)]  -  СЃС‚Р°С‚СѓСЃ-СЂРµРіС–СЃС‚СЂ РґР»СЏ РѕС†С–РЅРєРё СЃС‚Р°С‚СѓСЃР° РѕРїРµСЂР°С†С–Р№ Programm i Erase
+        [Import("NAND_Prog.activeSR", typeof(SRregister), AllowDefault = true)]  -  статус-регістр для оцінки статуса операцій Programm i Erase
 
-        [Import("Interpreted" ,typeof(SRregister), AllowDefault = true)]         - С–РЅС‚РµСЂРїСЂРµС‚Р°С†С–СЏ РІРјС–СЃС‚Сѓ СЃС‚Р°С‚СѓСЃ-СЂРµРіС–СЃС‚СЂР°
+        [Import("Interpreted" ,typeof(SRregister), AllowDefault = true)]         - інтерпретація вмісту статус-регістра
 
-        [Import("NAND_Prog.Algo", typeof(AlgoMapBB), AllowDefault = true)]       - Р°Р»РіРѕСЂРёС‚Рј РѕР±С…РѕРґСѓ Р±РµРґ Р±Р»РѕРєС–РІ
+        [Import("NAND_Prog.Algo", typeof(AlgoMapBB), AllowDefault = true)]       - алгоритм обходу бед блоків
 
 
         ---------------------------------------------------------------------------------------------------------------------------------
 
-        Р§РµСЂРµР· Р·РјС–РЅРЅСѓ private object objX РІС–РґР±СѓРІР°С”С‚СЊСЃСЏ Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ РІСЃС–С… (РѕР±РѕРІСЏР·РєРѕРІРёС… С– РЅРµ РѕР±РѕРІСЏР·РєРѕРІРёС…) С–РјРїРѕСЂС‚С–РІ РґР»СЏ NAND_Prog.exe .
-        РњС–РЅСЏСЋС‡Рё РєРѕРЅС‚СЂР°РєС‚ РІ СЃРµРєС†С–С— [Import] РґР»СЏ РєРѕР¶РЅРѕС— Р·РјС–РЅРЅРѕС— objX РјРѕР¶РЅР° РґРёРЅР°РјС–С‡РЅРѕ РїС–РґРєР»СЋС‡Р°С‚Рё С‚Сѓ С‡Рё С–РЅС€Сѓ СЂРµР°Р»С–Р·Р°С†С–СЋ РІС–РґРїРѕРІС–РґРЅРѕРіРѕ Importa РІ NAND_Prog.exe
-        РћСЃРЅРѕРІРЅРµ РїСЂР°РІРёР»Рѕ РїСЂРё С†СЊРѕРјСѓ С‚РёРїРё РєРѕРЅС‚СЂР°РєС‚С–РІ РјР°СЋС‚СЊ СЃРїС–РІРїР°РґР°С‚Рё Р° С–РјСЏ РєРѕРЅС‚СЂР°РєС‚Сѓ РІ СЃРµРєС†С–С— [Import] Р±РµСЂРµС‚СЊСЃСЏ Р· DLL Р· СЏРєРѕС— С…РѕС‡Сѓ С‰РѕСЃСЊ С–РјРїРѕСЂС‚СѓРІР°С‚Рё
+        Через змінну private object objX відбувається задоволення всіх (обовязкових і не обовязкових) імпортів для NAND_Prog.exe .
+        Міняючи контракт в секції [Import] для кожної змінної objX можна динамічно підключати ту чи іншу реалізацію відповідного Importa в NAND_Prog.exe
+        Основне правило при цьому типи контрактів мають співпадати а імя контракту в секції [Import] береться з DLL з якої хочу щось імпортувати
 
      */
     #endregion
@@ -97,7 +97,9 @@ namespace K9F1G08U0D
 
 
     #region Requared
+    #region Don't edit !!!
 
+    // DO NOT EDIT THIS CODE    !!!!
     public class ChipStructure
     {       
 
@@ -138,13 +140,9 @@ namespace K9F1G08U0D
 
         [Export("MemoryOrg.Row address cycles", typeof(MemoryOrg))]
         public byte rowAdrCycles;
+        
+        #endregion
 
-        //------------------------------------------------------
-
-
-
-        //[Export("Memory organisation1", typeof(MemoryOrg))]
-        //private MemoryOrg _memOrg;
 
         public ChipStructure()
         {
@@ -154,13 +152,13 @@ namespace K9F1G08U0D
             name = "K9F1G08U0D";
 
             width = Organization.x8;
-            bytesPP = 0x0800;      // СЂРѕР·РјС–СЂ СЃС‚РѕСЂС–РЅРєРё - 2048 Р±Р°Р№С‚ (2Kb)
-            spareBytesPP = 0x40;   // СЂРѕР·РјС–СЂ Spare Area - 64 Р±Р°Р№С‚
-            pagesPB = 0x40;        // РєС–Р»СЊРєС–СЃС‚СЊ СЃС‚РѕСЂС–РЅРѕРє РІ Р±Р»РѕС†С– - 64 
-            bloksPLUN = 0x0400;    // РєС–Р»СЊРєС–СЃС‚СЊ Р±Р»РѕРєС–РІ РІ CE - 1024
-            LUNs = 0x01;           // РєС–Р»СЊРєС–СЃС‚СЊ CE РІ С‡С–РїС–
-            colAdrCycles = 0x02;   // Р°РґСЂРµСЃР°С†С–СЏ РєРѕР»РѕРЅРѕРє 
-            rowAdrCycles = 0x03;   // Р°РґСЂРµСЃР°С†С–СЏ СЂСЏРґРєС–РІ
+            bytesPP = 0x0800;      // розмір сторінки - 2048 байт (2Kb)
+            spareBytesPP = 0x40;   // розмір Spare Area - 64 байт
+            pagesPB = 0x40;        // кількість сторінок в блоці - 64 
+            bloksPLUN = 0x0400;    // кількість блоків в CE - 1024
+            LUNs = 0x01;           // кількість CE в чіпі
+            colAdrCycles = 0x02;   // адресація колонок 
+            rowAdrCycles = 0x03;   // адресація рядків
 
             
 
@@ -169,7 +167,7 @@ namespace K9F1G08U0D
 
     public class BadBolockImplement
     {
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ GetExportedValue<int>("BadBlockProvider.BadBlockMark")  РІ NAND_Prog.exe     
+        //задоволення імпорту GetExportedValue<int>("BadBlockProvider.BadBlockMark")  в NAND_Prog.exe     
         //---------------------------------------------------------------
         [Export("BadBlockProvider.BadBlockMark", typeof(int))]
         [Import("SomeDll.BadBlockMark", typeof(int))]
@@ -183,7 +181,7 @@ namespace K9F1G08U0D
     #region Not requared
     public class ChipOperation
     {
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ [ImportMany("NAND_Prog.Chip", typeof(Operation))]   РІ NAND_Prog.exe     
+        //задоволення імпорту [ImportMany("NAND_Prog.Chip", typeof(Operation))]   в NAND_Prog.exe     
         //---------------------------------------------------------------
 
         [Export("NAND_Prog.Chip", typeof(List<Operation>))]
@@ -205,50 +203,95 @@ namespace K9F1G08U0D
         //-------------------------------------------------------------------
     }
 
-    public class ChipSubPartImports
+
+    
+    public class ChipSubParts
     {
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]   РІ NAND_Prog.exe     
+        //задоволення імпорту [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]   в NAND_Prog.exe     
         //---------------------------------------------------------------
 
-        [Export("NAND_Prog.Sub part", typeof(ChipPart))]
+        //  [Export("NAND_Prog.Sub part", typeof(ChipPart))]
+        [Export("Chip.Sub parts", typeof(ChipPart))]
         [Import("ID Register", typeof(ChipPart))]
-        private object obj1;
+        public object _id_register;
 
-        [Export("NAND_Prog.Sub part", typeof(ChipPart))]
-        [Export("NAND_Prog.activeSR", typeof(SRregister))]                        //РєРѕСЂРёСЃС‚СѓРІР°С‡ РІРєР°Р·СѓС” С‰Рѕ С†Рµ С” СЃС‚Р°С‚СѓСЃ-СЂРµРіС–СЃС‚СЂ РґР»СЏ РїРµСЂРµРІС–СЂРєРё СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕРїРµСЂР°С†С–Р№    
+        //--------------------------------------------------
+
+        [Export("Chip.Sub parts", typeof(ChipPart))]
+        [Export("Chip.activeSR", typeof(SRregister))]                        //користувач вказує що це є статус-регістр для перевірки результата операцій 
         [Import("Status Register", typeof(ChipPart))]
-        private object obj2;
+        public object _sr_register;
+
+        
 
     }
 
-    public class ID_RegisterImports
+    
+    public class Setup_ID_Register
     {
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ [ImportMany("ID Operation", typeof(Operation))] РґР»СЏ ID Register
 
-        [Export("ID Operation", typeof(Operation))]
+        [Export("ID Register name", typeof(string))]
+        string ID_Register_name = "ID register";
+
+        [Export("ID Register size", typeof(int))]
+        int ID_Register_size = 0x05;
+
+
+        //задоволення імпорту [ImportMany("ID Operation", typeof(Operation))] для ID Register
+
+        [Export("ID Register Operation", typeof(Operation))]
         [Import("ID Read", typeof(Operation))]
         private object obj1;
 
 
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ [Import("ID_Interpreted", typeof(Register), AllowDefault = true)]  РґР»СЏ ID Register
-        [Export("ID_Interpreted", typeof(Register))]
+        //задоволення імпорту [Import("ID_Interpreted", typeof(Register), AllowDefault = true)]  для ID Register
+        [Export("ID Register Interpreted", typeof(Register))]
         [Import("K9F1G08U0D_IDInterpreted", typeof(Register))]
         private object obj2;
     }
 
+    public class Setup_Status_Register
+    {
+        #region Required
+
+
+        [Export("Status Register name", typeof(string))]
+        string Status_Register_name = "Status Register";
+
+        [Export("Status Register size", typeof(int))]
+        int Status_Register_size = 0x01;
+
+        #endregion
+
+        #region Not required (Option)
+        
+        //задоволення імпорту [ImportMany("Status Register Operations", typeof(Operation))]   for   Status Register
+        [Export("Status Register Operations", typeof(Operation))]
+        [Import("Status Read", typeof(Operation))]
+        private object obj1;
+
+        [Export("Status Register Interpreted", typeof(Func<Operation, SRregister, bool?>))]
+
+        #endregion
+
+
+    }
+
+    /*
     public class StatusRegisterImports
     {
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ [ImportMany("SR_operations", typeof(Operation))] РґР»СЏ Status Register
+        //задоволення імпорту [ImportMany("SR_operations", typeof(Operation))] для Status Register
         [Export("SR_operations", typeof(Operation))]
         [Import("SR_Read", typeof(Operation))]
         private object obj1;
 
-        //Р·Р°РґРѕРІРѕР»РµРЅРЅСЏ С–РјРїРѕСЂС‚Сѓ [Import("SR_Interpreted", typeof(SRregister), AllowDefault = true)]  РґР»СЏ Status Register
+        //задоволення імпорту [Import("SR_Interpreted", typeof(SRregister), AllowDefault = true)]  для Status Register
         [Export("SR_Interpreted", typeof(SRregister))]
         [Import("SRInterpreted", typeof(SRregister))]
         private object obj2;
 
     }
 
+    */
     #endregion
 }
