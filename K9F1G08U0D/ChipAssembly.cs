@@ -207,19 +207,18 @@ namespace K9F1G08U0D
     
     public class ChipSubParts
     {
-        //задоволення імпорту [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]   в NAND_Prog.exe     
+           
         //---------------------------------------------------------------
 
-        //  [Export("NAND_Prog.Sub part", typeof(ChipPart))]
-        [Export("Chip.Sub parts", typeof(ChipPart))]
-        [Import("ID Register", typeof(ChipPart))]
+        [Export("Chip.Sub parts", typeof(ChipPart))]            // to JuliProg
+        [Import("ID Register", typeof(ChipPart))]               // from [some].dll
         public object _id_register;
 
         //--------------------------------------------------
 
-        [Export("Chip.Sub parts", typeof(ChipPart))]
-        [Export("Chip.activeSR", typeof(SRregister))]                        //користувач вказує що це є статус-регістр для перевірки результата операцій 
-        [Import("Status Register", typeof(ChipPart))]
+        [Export("Chip.Sub parts", typeof(ChipPart))]            // to JuliProg
+        [Export("Chip.activeSR", typeof(SRregister))]           // to JuliProg            
+        [Import("Status Register", typeof(ChipPart))]           // from [some].dll
         public object _sr_register;
 
         
@@ -255,10 +254,10 @@ namespace K9F1G08U0D
         #region Required
 
 
-        [Export("Status Register name", typeof(string))]
-        string Status_Register_name = "Status Register";
+        [Export("Status Register name", typeof(string))]           //  to Status Register
+        string Status_Register_name = "Status Register";           
 
-        [Export("Status Register size", typeof(int))]
+        [Export("Status Register size", typeof(int))]              //  to Status Register
         int Status_Register_size = 0x01;
 
         #endregion
@@ -270,7 +269,7 @@ namespace K9F1G08U0D
         [Import("Status Read", typeof(Operation))]                         // from [some].dll
         private object obj1;
 
-        [Export("Status Register Interpreted", typeof(Func<Operation, SRregister, bool?>))]  // to JuliProg
+        [Export("Status Register Interpreted", typeof(Func<Operation, SRregister, bool?>))]  // to Status Register
         [Import("SRInterpreted", typeof(Func<Operation, SRregister, bool?>))]                // from [some].dll
         private object obj2;
 
