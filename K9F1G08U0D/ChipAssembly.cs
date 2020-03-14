@@ -181,9 +181,7 @@ namespace K9F1G08U0D
     #region Not requared
     public class ChipOperation
     {
-        //задоволення імпорту [ImportMany("NAND_Prog.Chip", typeof(Operation))]   в NAND_Prog.exe     
-        //---------------------------------------------------------------
-
+       
         [Export("JuliProg.Chip", typeof(List<Operation>))]
         [Import("Reset_FFh", typeof(Operation))]
         private object reset_command;
@@ -200,7 +198,6 @@ namespace K9F1G08U0D
         [Import("Erase_60h_D0h", typeof(Operation))]
         private object erase_command;
 
-        //-------------------------------------------------------------------
     }
 
 
@@ -229,24 +226,30 @@ namespace K9F1G08U0D
     public class Setup_ID_Register
     {
 
-        [Export("ID Register name", typeof(string))]
+        #region Required
+
+        [Export("ID Register name", typeof(string))]         //  to ID Register
         string ID_Register_name = "ID register";
 
-        [Export("ID Register size", typeof(int))]
+        [Export("ID Register size", typeof(int))]            //  to ID Register
         int ID_Register_size = 0x05;
 
 
-        //задоволення імпорту [ImportMany("ID Operation", typeof(Operation))] для ID Register
+        #endregion
 
-        [Export("ID Register Operation", typeof(Operation))]
-        [Import("ID Read", typeof(Operation))]
+        #region Not required (Option)
+
+        [Export("ID Register Operation", typeof(Operation))]      //  to ID Register
+        [Import("ID Read", typeof(Operation))]                    // from [some].dll
         private object obj1;
 
 
-        //задоволення імпорту [Import("ID_Interpreted", typeof(Register), AllowDefault = true)]  для ID Register
-        [Export("ID Register Interpreted", typeof(Register))]
-        [Import("K9F1G08U0D_IDInterpreted", typeof(Register))]
+        
+        [Export("ID Register Interpreted", typeof(Register))]    //  to ID Register
+        [Import("K9F1G08U0D_IDInterpreted", typeof(Register))]   // from [some].dll
         private object obj2;
+
+        #endregion
     }
 
     public class Setup_Status_Register
@@ -278,21 +281,6 @@ namespace K9F1G08U0D
 
     }
 
-    /*
-    public class StatusRegisterImports
-    {
-        //задоволення імпорту [ImportMany("SR_operations", typeof(Operation))] для Status Register
-        [Export("SR_operations", typeof(Operation))]
-        [Import("SR_Read", typeof(Operation))]
-        private object obj1;
-
-        //задоволення імпорту [Import("SR_Interpreted", typeof(SRregister), AllowDefault = true)]  для Status Register
-        [Export("SR_Interpreted", typeof(SRregister))]
-        [Import("SRInterpreted", typeof(SRregister))]
-        private object obj2;
-
-    }
-
-    */
+   
     #endregion
 }
