@@ -184,21 +184,21 @@ namespace K9F1G08U0D
         //задоволення імпорту [ImportMany("NAND_Prog.Chip", typeof(Operation))]   в NAND_Prog.exe     
         //---------------------------------------------------------------
 
-        [Export("NAND_Prog.Chip", typeof(List<Operation>))]
-        [Import("ChipReset", typeof(Operation))]
-        private object obj1;
+        [Export("JuliProg.Chip", typeof(List<Operation>))]
+        [Import("Reset_FFh", typeof(Operation))]
+        private object reset_command;
 
-        [Export("NAND_Prog.Chip", typeof(List<Operation>))]
-        [Import("ChipRead", typeof(Operation))]
-        private object obj2;
+        [Export("JuliProg.Chip", typeof(List<Operation>))]
+        [Import("Read_00h_30h", typeof(Operation))]
+        private object read_command;
 
-        [Export("NAND_Prog.Chip", typeof(List<Operation>))]
-        [Import("ChipProgramm", typeof(Operation))]
-        private object obj3;
+        [Export("JuliProg.Chip", typeof(List<Operation>))]
+        [Import("PageProgram_80h_10h", typeof(Operation))]
+        private object page_program_command;
 
-        [Export("NAND_Prog.Chip", typeof(List<Operation>))]
-        [Import("ChipErase", typeof(Operation))]
-        private object obj4;
+        [Export("JuliProg.Chip", typeof(List<Operation>))]
+        [Import("Erase_60h_D0h", typeof(Operation))]
+        private object erase_command;
 
         //-------------------------------------------------------------------
     }
@@ -265,12 +265,14 @@ namespace K9F1G08U0D
 
         #region Not required (Option)
         
-        //задоволення імпорту [ImportMany("Status Register Operations", typeof(Operation))]   for   Status Register
-        [Export("Status Register Operations", typeof(Operation))]
-        [Import("Status Read", typeof(Operation))]
+        
+        [Export("Status Register Operations", typeof(Operation))]          // to Status Register
+        [Import("Status Read", typeof(Operation))]                         // from [some].dll
         private object obj1;
 
-        [Export("Status Register Interpreted", typeof(Func<Operation, SRregister, bool?>))]
+        [Export("Status Register Interpreted", typeof(Func<Operation, SRregister, bool?>))]  // to JuliProg
+        [Import("SRInterpreted", typeof(Func<Operation, SRregister, bool?>))]                // from [some].dll
+        private object obj2;
 
         #endregion
 
