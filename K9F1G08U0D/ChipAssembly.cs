@@ -1,17 +1,12 @@
 using NAND_Prog;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace K9F1G08U0D
 {
-   
 
 
-        public class ChipAssembly
+
+    public class ChipAssembly
     {
         [Export("MyChip", typeof(Chip))]            
         TemplateChip.Type myChip = new TemplateChip.Type();
@@ -23,13 +18,13 @@ namespace K9F1G08U0D
             myChip.name = "K9F1G08U0D";
 
             myChip.width = Organization.x8;
-            myChip.bytesPP = 0x0800;      // розмір сторінки - 2048 байт (2Kb)
-            myChip.spareBytesPP = 0x40;   // розмір Spare Area - 64 байт
-            myChip.pagesPB = 0x40;        // кількість сторінок в блоці - 64 
-            myChip.bloksPLUN = 0x0400;    // кількість блоків в CE - 1024
-            myChip.LUNs = 0x01;           // кількість CE в чіпі
-            myChip.colAdrCycles = 0x02;   // адресація колонок 
-            myChip.rowAdrCycles = 0x03;   // адресація рядків
+            myChip.bytesPP = 2048;      // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - 2048 пїЅпїЅпїЅпїЅ (2Kb)
+            myChip.spareBytesPP = 64;   // пїЅпїЅпїЅпїЅпїЅ Spare Area - 64 пїЅпїЅпїЅпїЅ
+            myChip.pagesPB = 64;        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ - 64 
+            myChip.bloksPLUN = 1024;    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ CE - 1024
+            myChip.LUNs = 1;           // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CE пїЅ пїЅпїЅпїЅ
+            myChip.colAdrCycles = 2;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+            myChip.rowAdrCycles = 2;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
         }
 
@@ -45,56 +40,56 @@ namespace K9F1G08U0D
 
     // #region Help
     // /*  
-    // Інтерфейс , який торчить з NAND_Prog (він незмінний (утворюється при копміляції NAND_Prog.ехе)):
-    //   обовязкові для задоволення імпорти :
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ , пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ NAND_Prog (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NAND_Prog.пїЅпїЅпїЅ)):
+    //   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ :
 
-    //    [Import("NAND_Prog.Organization", typeof(MemoryOrg))]         - організація памяті
+    //    [Import("NAND_Prog.Organization", typeof(MemoryOrg))]         - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-    //    [Import("NAND_Prog.Bytes per page", typeof(MemoryOrg))]       - байт в сторінці
+    //    [Import("NAND_Prog.Bytes per page", typeof(MemoryOrg))]       - пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    //    [Import("NAND_Prog.Spare bytes per page", typeof(MemoryOrg))] - додаткових байт в сторінці
+    //    [Import("NAND_Prog.Spare bytes per page", typeof(MemoryOrg))] - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    //    [Import("NAND_Prog.Pages per block", typeof(MemoryOrg))]      - кількість сторінок в блоці
+    //    [Import("NAND_Prog.Pages per block", typeof(MemoryOrg))]      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 
-    //    [Import("NAND_Prog.Bloks per LUN", typeof(MemoryOrg))]        - кількість блоків в СЕ
+    //    [Import("NAND_Prog.Bloks per LUN", typeof(MemoryOrg))]        - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 
-    //    [Import("NAND_Prog.LUNs", typeof(MemoryOrg))]                 - кількість СЕ в чіпі
+    //    [Import("NAND_Prog.LUNs", typeof(MemoryOrg))]                 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅ
 
-    //    [Import("NAND_Prog.Column address cycles", typeof(MemoryOrg))] - кількість циклів для адресації колонок
+    //    [Import("NAND_Prog.Column address cycles", typeof(MemoryOrg))] - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    //    [Import("NAND_Prog.Row address cycles", typeof(MemoryOrg))]    - кількість циклів для адресації рядків
-
-
-
-    //    [Import("NAND_Prog.Device Manufacturing" , typeof(Chip))]      - виробник чіпа
-
-    //    [Import("NAND_Prog.Chip name", typeof(Chip))]                  - імя чіпа
-
-
-    //    <int>("NAND_Prog.Bad Block Mark")                              - признак НЕ bad blok
+    //    [Import("NAND_Prog.Row address cycles", typeof(MemoryOrg))]    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
 
-    //    [Import("ChipDependency", typeof(List<string>))]               - залежності чіпа (список dll-ок з яких складається чіп)
+    //    [Import("NAND_Prog.Device Manufacturing" , typeof(Chip))]      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-    //   не обовязкові імпорти :
+    //    [Import("NAND_Prog.Chip name", typeof(Chip))]                  - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-    //     [ImportMany("NAND_Prog.Chip", typeof(Operation))]             - набір операцій для цього чіпа            
 
-    //     [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]          - набір додаткових частин , які є в складі чіпа (наприклад ID Register , Status Register і інш.)
+    //    <int>("NAND_Prog.Bad Block Mark")                              - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ bad blok
 
-    //     [Import("NAND_Prog.activeSR", typeof(SRregister), AllowDefault = true)]  -  статус-регістр для оцінки статуса операцій Programm i Erase
 
-    //     [Import("Interpreted" ,typeof(SRregister), AllowDefault = true)]         - інтерпретація вмісту статус-регістра
 
-    //     [Import("NAND_Prog.Algo", typeof(AlgoMapBB), AllowDefault = true)]       - алгоритм обходу бед блоків
+    //    [Import("ChipDependency", typeof(List<string>))]               - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ dll-пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ)
+
+    //   пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ :
+
+    //     [ImportMany("NAND_Prog.Chip", typeof(Operation))]             - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ            
+
+    //     [ImportMany("NAND_Prog.Sub part", typeof(ChipPart))]          - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ , пїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID Register , Status Register пїЅ пїЅпїЅпїЅ.)
+
+    //     [Import("NAND_Prog.activeSR", typeof(SRregister), AllowDefault = true)]  -  пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Programm i Erase
+
+    //     [Import("Interpreted" ,typeof(SRregister), AllowDefault = true)]         - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+    //     [Import("NAND_Prog.Algo", typeof(AlgoMapBB), AllowDefault = true)]       - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
     //     ---------------------------------------------------------------------------------------------------------------------------------
 
-    //     Через змінну private object objX відбувається задоволення всіх (обовязкових і не обовязкових) імпортів для NAND_Prog.exe .
-    //     Міняючи контракт в секції [Import] для кожної змінної objX можна динамічно підключати ту чи іншу реалізацію відповідного Importa в NAND_Prog.exe
-    //     Основне правило при цьому типи контрактів мають співпадати а імя контракту в секції [Import] береться з DLL з якої хочу щось імпортувати
+    //     пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ private object objX пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ NAND_Prog.exe .
+    //     МіпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [Import] пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ objX пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Importa пїЅ NAND_Prog.exe
+    //     пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [Import] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ DLL пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     //  */
     // #endregion
@@ -183,13 +178,13 @@ namespace K9F1G08U0D
     //         name = "K9F1G08U0D";
 
     //         width = Organization.x8;
-    //         bytesPP = 0x0800;      // розмір сторінки - 2048 байт (2Kb)
-    //         spareBytesPP = 0x40;   // розмір Spare Area - 64 байт
-    //         pagesPB = 0x40;        // кількість сторінок в блоці - 64 
-    //         bloksPLUN = 0x0400;    // кількість блоків в CE - 1024
-    //         LUNs = 0x01;           // кількість CE в чіпі
-    //         colAdrCycles = 0x02;   // адресація колонок 
-    //         rowAdrCycles = 0x03;   // адресація рядків
+    //         bytesPP = 0x0800;      // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - 2048 пїЅпїЅпїЅпїЅ (2Kb)
+    //         spareBytesPP = 0x40;   // пїЅпїЅпїЅпїЅпїЅ Spare Area - 64 пїЅпїЅпїЅпїЅ
+    //         pagesPB = 0x40;        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ - 64 
+    //         bloksPLUN = 0x0400;    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ CE - 1024
+    //         LUNs = 0x01;           // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CE пїЅ пїЅпїЅпїЅ
+    //         colAdrCycles = 0x02;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+    //         rowAdrCycles = 0x03;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
 
@@ -198,7 +193,7 @@ namespace K9F1G08U0D
 
     // public class BadBolockImplement
     // {
-    //     //задоволення імпорту GetExportedValue<int>("BadBlockProvider.BadBlockMark")  в NAND_Prog.exe     
+    //     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetExportedValue<int>("BadBlockProvider.BadBlockMark")  пїЅ NAND_Prog.exe     
     //     //---------------------------------------------------------------
     //     [Export("BadBlockProvider.BadBlockMark", typeof(int))]
     //     [Import("SomeDll.BadBlockMark", typeof(int))]
