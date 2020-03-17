@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="NAND_Prog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Soft\NAND_Prog\bin\Release\NAND_Prog.exe</HintPath>
+      <HintPath>..\..\..\Soft\NAND_Prog\bin\Debug\NAND_Prog.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

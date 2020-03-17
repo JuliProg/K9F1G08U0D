@@ -8,8 +8,8 @@ namespace K9F1G08U0D
 
     public class ChipAssembly
     {
-        [Export("MyChip", typeof(Chip))]            
-        TemplateChip.Type myChip = new TemplateChip.Type();
+        [Export("MyChip", typeof(Chip))]
+        TemplateChip.Prototype myChip = new TemplateChip.Prototype();
 
 
         ChipAssembly()
@@ -25,6 +25,10 @@ namespace K9F1G08U0D
             myChip.LUNs = 1;           // ������� CE � ���
             myChip.colAdrCycles = 2;   // ��������� ������� 
             myChip.rowAdrCycles = 2;   // ��������� �����
+
+            //-----------------------------------------------------------
+
+            myChip.operations += "Reset_FFh";
 
         }
 
