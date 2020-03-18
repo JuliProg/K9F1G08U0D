@@ -28,7 +28,7 @@ namespace K9F1G08U0D
 
             //-----------------------------------------------------------
 
-            myChip.operations += "Reset_FFh";
+            myChip.operations.Add( "Reset_FFh");
 
         }
 
