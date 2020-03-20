@@ -29,6 +29,8 @@ namespace K9F1G08U0D
             //-----------------------------------------------------------
 
             myChip.operations.Add( "Reset_FFh");
+            myChip.operations.Add("Erase_60h_D0h");
+
 
         }
 
