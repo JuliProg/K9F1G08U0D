@@ -24,13 +24,15 @@ namespace K9F1G08U0D
             myChip.bloksPLUN = 1024;    // ������� ����� � CE - 1024
             myChip.LUNs = 1;           // ������� CE � ���
             myChip.colAdrCycles = 2;   // ��������� ������� 
-            myChip.rowAdrCycles = 2;   // ��������� �����
+            myChip.rowAdrCycles = 3;   // ��������� �����
 
             //-----------------------------------------------------------
 
             myChip.operations.Add( "Reset_FFh");
             myChip.operations.Add("Erase_60h_D0h");
-
+            myChip.operations.Add("Read_00h_30h");
+            myChip.operations.Add("PageProgram_80h_10h");
+      //      myChip.operations.Add("ReadId_90h");
 
         }
 
