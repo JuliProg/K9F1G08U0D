@@ -32,7 +32,14 @@ namespace K9F1G08U0D
             myChip.operations.Add("Erase_60h_D0h");
             myChip.operations.Add("Read_00h_30h");
             myChip.operations.Add("PageProgram_80h_10h");
-      //      myChip.operations.Add("ReadId_90h");
+           
+            //-----------------------------------------------------------
+
+            myChip.registers.Add("ID_Register").
+                name("Id Register").
+                size(5).
+                operations.Add ("ReadId_90h").
+                interpreted("K9F1G08U0D.ID_Register.Interpreted");   //З оремої dll
 
         }
 
