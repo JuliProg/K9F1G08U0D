@@ -25,50 +25,42 @@ namespace K9F1G08U0D
             myChip.bloksPLUN = 1024;    // ������� ����� � CE - 1024
             myChip.LUNs = 1;           // ������� CE � ���
             myChip.colAdrCycles = 2;   // ��������� ������� 
-            myChip.rowAdrCycles = 3;   // ��������� �����
+            myChip.rowAdrCycles = 2;   // ��������� �����
 
             //-----------------------------------------------------------
 
             myChip.Operations("Reset_FFh").
                    Operations("Erase_60h_D0h").
                    Operations("Read_00h_30h").
-                   Operations("PageProgram_80h_10h");          
+                   Operations("PageProgram_80h_10h");
 
             //-----------------------------------------------------------
 
             myChip.registers.Add(
                 "Id Register").
                 Size(5).
-                Operations("ReadId_90h").                
-                Interpreted("K9F1G08U0D.ID_Register.Interpreted");
+                Operations("ReadId_90h").
+               // Interpreted("K9F1G08U0D.ID_Register.Interpreted");
+               Interpretation(ID_interpreting);        // From here
                                             
 
 
         }
 
-
-    }
-
-
-    public class ID_capability
-    {
-        [Export(typeof(Function)),
-            ExportMetadata("Name", "K9F1G08U0D.ID_Register.Interpreted")]
-
-        public string Interpreting(Register register)
+        public string ID_interpreting(Register register)
         {
             string messsage = "1st Byte    Maker Code = " + BitConverter.ToString(register.GetContent(), 0, 1) + Environment.NewLine;
             messsage += "2st Byte    Device Code = " + BitConverter.ToString(register.GetContent(), 1, 1) + Environment.NewLine;
             messsage += "3rd ID Data = " + BitConverter.ToString(register.GetContent(), 2, 1) + Environment.NewLine;
-            messsage += Encoding(register.GetContent()[2], 2) + Environment.NewLine;
+            messsage += ID_decoding(register.GetContent()[2], 2) + Environment.NewLine;
             messsage += "4rd ID Data = " + BitConverter.ToString(register.GetContent(), 3, 1) + Environment.NewLine;
-            messsage += Encoding(register.GetContent()[3], 3) + Environment.NewLine;
+            messsage += ID_decoding(register.GetContent()[3], 3) + Environment.NewLine;
             messsage += "5rd ID Data = " + BitConverter.ToString(register.GetContent(), 4, 1) + Environment.NewLine;
-            messsage += Encoding(register.GetContent()[4], 4) + Environment.NewLine;
+            messsage += ID_decoding(register.GetContent()[4], 4) + Environment.NewLine;
 
             return messsage;
         }
-        private string Encoding(byte bt, int pos)
+        private string ID_decoding(byte bt, int pos)
         {
             string str_result = String.Empty;
 
@@ -220,6 +212,179 @@ namespace K9F1G08U0D
             return str_result;
         }
     }
+
+
+    //public class ID_capability
+    //{
+
+    //    [Export(typeof(Func<Register, string>)),
+    //           ExportMetadata("Name", "K9F1G08U0D.ID_Register.Interpreted")]
+
+    //    public string Interpreting(Register register)
+    //    {
+    //        string messsage = "1st Byte    Maker Code = " + BitConverter.ToString(register.GetContent(), 0, 1) + Environment.NewLine;
+    //        messsage += "2st Byte    Device Code = " + BitConverter.ToString(register.GetContent(), 1, 1) + Environment.NewLine;
+    //        messsage += "3rd ID Data = " + BitConverter.ToString(register.GetContent(), 2, 1) + Environment.NewLine;
+    //        messsage += Decoding(register.GetContent()[2], 2) + Environment.NewLine;
+    //        messsage += "4rd ID Data = " + BitConverter.ToString(register.GetContent(), 3, 1) + Environment.NewLine;
+    //        messsage += Decoding(register.GetContent()[3], 3) + Environment.NewLine;
+    //        messsage += "5rd ID Data = " + BitConverter.ToString(register.GetContent(), 4, 1) + Environment.NewLine;
+    //        messsage += Decoding(register.GetContent()[4], 4) + Environment.NewLine;
+
+    //        return messsage;
+    //    }
+    //    private string Decoding(byte bt, int pos)
+    //    {
+    //        string str_result = String.Empty;
+
+    //        var IO = new System.Collections.BitArray(new[] { bt });
+
+    //        switch (pos)
+    //        {
+    //            case 2:
+    //                str_result += " Internal Chip Number = ";
+    //                if (IO[1] == false && IO[0] == false)
+    //                    str_result += "1";
+    //                if (IO[1] == false && IO[0] == true)
+    //                    str_result += "2";
+    //                if (IO[1] == true && IO[0] == false)
+    //                    str_result += "4";
+    //                if (IO[1] == true && IO[0] == true)
+    //                    str_result += "8";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Cell Type = ";
+    //                if (IO[3] == false && IO[2] == false)
+    //                    str_result += "2 Level Cell";
+    //                if (IO[3] == false && IO[2] == true)
+    //                    str_result += "4 Level Cell";
+    //                if (IO[3] == true && IO[2] == false)
+    //                    str_result += "8 Level Cell";
+    //                if (IO[3] == true && IO[2] == true)
+    //                    str_result += "16 Level Cell";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Number of Simultaneously Programmed Pages = ";
+    //                if (IO[5] == false && IO[4] == false)
+    //                    str_result += "1";
+    //                if (IO[5] == false && IO[4] == true)
+    //                    str_result += "2";
+    //                if (IO[5] == true && IO[4] == false)
+    //                    str_result += "4";
+    //                if (IO[5] == true && IO[4] == true)
+    //                    str_result += "8";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Interleave Program Between multiple chips = ";
+    //                if (IO[6] == false)
+    //                    str_result += "Not Support";
+    //                if (IO[6] == true)
+    //                    str_result += "Support";
+    //                str_result += Environment.NewLine;
+
+    //                str_result += " Cache Program = ";
+    //                if (IO[7] == false)
+    //                    str_result += "Not Support";
+    //                if (IO[7] == true)
+    //                    str_result += "Support";
+    //                str_result += Environment.NewLine;
+    //                break;
+
+    //            case 3:
+
+    //                str_result += " Page Size (w/o redundant area ) = ";
+    //                if (IO[1] == false && IO[0] == false)
+    //                    str_result += "1KB";
+    //                if (IO[1] == false && IO[0] == true)
+    //                    str_result += "2KB";
+    //                if (IO[1] == true && IO[0] == false)
+    //                    str_result += "4KB";
+    //                if (IO[1] == true && IO[0] == true)
+    //                    str_result += "8KB";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Block Size (w/o redundant area ) = ";
+    //                if (IO[5] == false && IO[4] == false)
+    //                    str_result += "64KB";
+    //                if (IO[5] == false && IO[4] == true)
+    //                    str_result += "128KB";
+    //                if (IO[5] == true && IO[4] == false)
+    //                    str_result += "256KB";
+    //                if (IO[5] == true && IO[4] == true)
+    //                    str_result += "512KB";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Redundant Area Size ( byte/512byte) = ";
+    //                if (IO[2] == false)
+    //                    str_result += "8";
+    //                if (IO[2] == true)
+    //                    str_result += "16";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Organization = ";
+    //                if (IO[6] == false)
+    //                    str_result += "x8";
+    //                if (IO[6] == true)
+    //                    str_result += "x16";
+    //                str_result += Environment.NewLine;
+
+    //                str_result += " Serial Access Minimum = ";
+    //                if (IO[7] == false && IO[3] == false)
+    //                    str_result += "50ns/30ns";
+    //                if (IO[7] == true && IO[3] == false)
+    //                    str_result += "25ns";
+    //                if (IO[7] == false && IO[3] == true)
+    //                    str_result += "Reserved";
+    //                if (IO[7] == true && IO[3] == true)
+    //                    str_result += "Reserved";
+    //                str_result += Environment.NewLine;
+    //                break;
+
+    //            case 4:
+
+    //                str_result += " Plane Number = ";
+    //                if (IO[3] == false && IO[2] == false)
+    //                    str_result += "1";
+    //                if (IO[3] == false && IO[2] == true)
+    //                    str_result += "2";
+    //                if (IO[3] == true && IO[2] == false)
+    //                    str_result += "4";
+    //                if (IO[3] == true && IO[2] == true)
+    //                    str_result += "8";
+    //                str_result += Environment.NewLine;
+
+
+    //                str_result += " Plane Size (w/o redundant area ) = ";
+    //                if (IO[6] == false && IO[5] == false && IO[4] == false)
+    //                    str_result += "64Mb";
+    //                if (IO[6] == false && IO[5] == false && IO[4] == true)
+    //                    str_result += "128Mb";
+    //                if (IO[6] == false && IO[5] == true && IO[4] == false)
+    //                    str_result += "256Mb";
+    //                if (IO[6] == false && IO[5] == true && IO[4] == true)
+    //                    str_result += "512Mb";
+    //                if (IO[6] == true && IO[5] == false && IO[4] == false)
+    //                    str_result += "1Gb";
+    //                if (IO[6] == true && IO[5] == false && IO[4] == true)
+    //                    str_result += "2Gb";
+    //                if (IO[6] == true && IO[5] == true && IO[4] == false)
+    //                    str_result += "4Gb";
+    //                if (IO[6] == true && IO[5] == true && IO[4] == true)
+    //                    str_result += "8Gb";
+    //                str_result += Environment.NewLine;
+
+
+    //                break;
+    //        }
+    //        return str_result;
+    //    }
+    //}
 
 
     #region
