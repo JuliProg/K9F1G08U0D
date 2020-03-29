@@ -49,8 +49,13 @@ namespace K9F1G08U0D
 
         public string ID_interpreting(Register register)
         {
-            string messsage = "1st Byte    Maker Code = " + BitConverter.ToString(register.GetContent(), 0, 1) + Environment.NewLine;
-            messsage += "2st Byte    Device Code = " + BitConverter.ToString(register.GetContent(), 1, 1) + Environment.NewLine;
+            byte[] content = register.GetContent();
+
+
+            //BitConverter.ToString(register.GetContent(), 0, 1)
+            //BitConverter.ToString(register.GetContent(), 1, 1)
+            string messsage = "1st Byte    Maker Code = " + content[0].ToString("X2") + Environment.NewLine;
+            messsage += "2st Byte    Device Code = " + content[1] + Environment.NewLine;
             messsage += "3rd ID Data = " + BitConverter.ToString(register.GetContent(), 2, 1) + Environment.NewLine;
             messsage += ID_decoding(register.GetContent()[2], 2) + Environment.NewLine;
             messsage += "4rd ID Data = " + BitConverter.ToString(register.GetContent(), 3, 1) + Environment.NewLine;
