@@ -27,21 +27,28 @@ namespace K9F1G08U0D
             myChip.colAdrCycles = 2;   // ��������� ������� 
             myChip.rowAdrCycles = 2;   // ��������� �����
 
-            //-----------------------------------------------------------
+            //------- Add chip operations ----------------------------------------------------
 
             myChip.Operations("Reset_FFh").
                    Operations("Erase_60h_D0h").
                    Operations("Read_00h_30h").
                    Operations("PageProgram_80h_10h");
 
-            //-----------------------------------------------------------
+            //------- Add chip registers ----------------------------------------------------
+
+            myChip.registers.Add(
+                "Status Register").
+                Size(1).
+                Operations("ReadStatus_70h").
+                Interpretation("StatusInterpreting@v1");   //From ChipPart\[some].dll
+
+
 
             myChip.registers.Add(
                 "Id Register").
                 Size(5).
-                Operations("ReadId_90h").
-               // Interpreted("K9F1G08U0D.ID_Register.Interpreted");
-               Interpretation(ID_interpreting);        // From here
+                Operations("ReadId_90h").               
+                Interpretation(ID_interpreting);          // From here
                                             
 
 
@@ -55,13 +62,19 @@ namespace K9F1G08U0D
             //BitConverter.ToString(register.GetContent(), 0, 1)
             //BitConverter.ToString(register.GetContent(), 1, 1)
             string messsage = "1st Byte    Maker Code = " + content[0].ToString("X2") + Environment.NewLine;
-            messsage += "2st Byte    Device Code = " + content[1] + Environment.NewLine;
-            messsage += "3rd ID Data = " + BitConverter.ToString(register.GetContent(), 2, 1) + Environment.NewLine;
-            messsage += ID_decoding(register.GetContent()[2], 2) + Environment.NewLine;
-            messsage += "4rd ID Data = " + BitConverter.ToString(register.GetContent(), 3, 1) + Environment.NewLine;
-            messsage += ID_decoding(register.GetContent()[3], 3) + Environment.NewLine;
-            messsage += "5rd ID Data = " + BitConverter.ToString(register.GetContent(), 4, 1) + Environment.NewLine;
-            messsage += ID_decoding(register.GetContent()[4], 4) + Environment.NewLine;
+            messsage += ID_decoding(content[0],0) + Environment.NewLine;
+
+            messsage += "2nd Byte    Device Code = " + content[1].ToString("X2") + Environment.NewLine;
+            messsage += ID_decoding(content[1], 1) + Environment.NewLine;
+
+            messsage += "3rd ID Data = " + content[2].ToString("X2") + Environment.NewLine;
+            messsage += ID_decoding(content[2], 2) + Environment.NewLine;
+
+            messsage += "4th ID Data = " + content[3].ToString("X2") + Environment.NewLine;
+            messsage += ID_decoding(content[3], 3) + Environment.NewLine;
+
+            messsage += "5th ID Data = " + content[4].ToString("X2") + Environment.NewLine;
+            messsage += ID_decoding(content[4], 4) + Environment.NewLine;
 
             return messsage;
         }
@@ -73,6 +86,24 @@ namespace K9F1G08U0D
 
             switch (pos)
             {
+                case 0:
+                    str_result += "Maker ";
+                    if (bt == 0xEC)
+                        str_result += "is Samsung";
+                    else
+                        str_result += "is not Samsung";
+                    str_result += Environment.NewLine;
+                    break;
+
+                case 1:
+                    str_result += "Device ";
+                    if (bt == 0xF1)
+                        str_result += "is K9F1G08U0D";
+                    else
+                        str_result += "is not K9F1G08U0D";
+                    str_result += Environment.NewLine;
+                    break;
+
                 case 2:
                     str_result += " Internal Chip Number = ";
                     if (IO[1] == false && IO[0] == false)
