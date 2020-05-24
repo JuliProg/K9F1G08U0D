@@ -7,24 +7,51 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
 # Chip parameters
 
 ```c#
- public ChipStructure()
-        {   
+  ChipAssembly()
+        {
+            myChip.devManuf = "SAMSUNG";
+            myChip.name = "K9F1G08U0D";
 
-            devManuf = "SAMSUNG";
-            name = "K9F1G08U0D";
+            myChip.width = Organization.x8;    // chip width - 8 bit
+            myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
+            myChip.spareBytesPP = 64;          // size Spare Area - 64 byte
+            myChip.pagesPB = 64;               // the number of pages per block - 64 
+            myChip.bloksPLUN = 1024;           // number of blocks in CE - 1024
+            myChip.LUNs = 1;                   // the amount of CE in the chip
+            myChip.colAdrCycles = 2;           // cycles for column addressing
+            myChip.rowAdrCycles = 2;           // cycles for row addressing 
+            myChip.vcc = Vcc.v3_3;             // supply voltage
 
-            width = Organization.x8;  //chip width - 8 bit
-            bytesPP = 0x0800;         // page size - 2048 byte (2Kb)
-            spareBytesPP = 0x40;      // size Spare Area - 64 byte
-            pagesPB = 0x40;           // the number of pages per block - 64 
-            bloksPLUN = 0x0400;       // number of blocks in CE - 1024
-            LUNs = 0x01;              // the amount of CE in the chip
-            colAdrCycles = 0x02;      // cycles for column addressing
-            rowAdrCycles = 0x03;      // cycles for row addressing 
-
-        }
   ```   
+
+# Chip operations
+
+```c#
+//------- Add chip operations ----------------------------------------------------
+
+            myChip.Operations("Reset_FFh").
+                   Operations("Erase_60h_D0h").
+                   Operations("Read_00h_30h").
+                   Operations("PageProgram_80h_10h");
+```
 
 # Chip registers
 
+```c#
+//------- Add chip registers ----------------------------------------------------
 
+            myChip.registers.Add(
+                "Status Register").
+                Size(1).
+                Operations("ReadStatus_70h").
+                Interpretation("StatusInterpreting@v1");   //From ChipPart\[some].dll
+
+
+
+            myChip.registers.Add(
+                "Id Register").
+                Size(5).
+                Operations("ReadId_90h").               
+                Interpretation(ID_interpreting);          // From here
+                                            
+```
