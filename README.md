@@ -35,7 +35,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                    Operations("PageProgram_80h_10h");
 ```
 
-# Chip registers
+# Chip registers (optional)
 
 ```c#
 //------- Add chip registers ----------------------------------------------------
@@ -54,4 +54,11 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                 Operations("ReadId_90h").               
                 Interpretation(ID_interpreting);          // From here
                                             
+```
+
+# Interpretation of ID-register values ​​(optional)
+
+```c#
+          public string ID_interpreting(Register register)
+          private string ID_decoding(byte bt, int pos)
 ```
