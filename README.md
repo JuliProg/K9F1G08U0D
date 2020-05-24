@@ -3,6 +3,12 @@ Implementation of the K9F1G08U0D chip for the JuliProg programmer
 
 Dependency injection, DI based on MEF framework is used to connect the chip to the programmer.
 
+```c#
+ public class ChipAssembly
+    {
+        [Export("Chip")]
+        ChipPrototype myChip = new ChipPrototype();
+```
 
 # Chip parameters
 
