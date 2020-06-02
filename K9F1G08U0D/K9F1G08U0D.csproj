@@ -72,7 +72,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /d /y $(TargetPath) ..\..\..\..\..\NAND_Prog\ChipSource\</PostBuildEvent>
+    <PostBuildEvent>call xcopy /d /y $(TargetPath) ..\..\..\..\..\NAND_Prog\ChipSource\
+call xcopy $(TargetPath)  ..\..\..\..\..\JuliProgServerPart\WebAPI\WebAPI\FileStorage\ChipImplement  /d /y /f</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
