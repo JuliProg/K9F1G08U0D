@@ -14,7 +14,7 @@ namespace K9F1G08U0D
         ChipAssembly()
         {
             myChip.devManuf = "SAMSUNG";
-            myChip.name = "K9F2G08U0D";
+            myChip.name = "K9F1G08U0D";
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
