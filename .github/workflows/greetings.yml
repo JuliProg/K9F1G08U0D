@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  git clone to virtual:
+  git_clone_to_virtual:
     runs-on: windows-latest 
     
     steps:
