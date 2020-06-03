@@ -1,4 +1,4 @@
-name: Greetings
+name: Create new chip
 
 on: 
  push:
@@ -9,14 +9,18 @@ jobs:
     runs-on: windows-latest 
     
     steps:
-    - name: Checkout
+    - name: Checkout new chip repo
       uses: actions/checkout@v2
       with:
-       path: main
+       path: chip
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
       with: 
        repository: JuliProg/Software
        path: my-tools
+       
+    - name: ls work directory
+      run: ls
+     
    
