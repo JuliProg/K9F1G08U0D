@@ -1,0 +1,12 @@
+name: Greetings
+
+on: 
+ push:
+    branches: [ master ]
+
+jobs:
+  git clone to virtual:
+    runs-on: windows-latest 
+    
+    steps:
+    - uses: actions/checkout@v2
