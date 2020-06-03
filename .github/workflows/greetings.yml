@@ -22,8 +22,10 @@ jobs:
        
     - name: ls work directory
       run: ls
-       cd chip
-       ls
+    - name: cd \chip
+      run: cd chip
+    - name: ls \chip 
+      run: ls
       
      
    
