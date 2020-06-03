@@ -9,4 +9,14 @@ jobs:
     runs-on: windows-latest 
     
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+       path: main
+
+    - name: Checkout tools repo
+      uses: actions/checkout@v2
+      with: 
+       repository: JuliProg/Software
+       path: my-tools
+   
