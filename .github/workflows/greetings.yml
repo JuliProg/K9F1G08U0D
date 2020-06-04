@@ -22,7 +22,8 @@ jobs:
        
     - name: ls work directory
       id: step_1
-      run: ls
+      run: |
+           ls
            ls chip
            ls my-tools
     
