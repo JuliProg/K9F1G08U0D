@@ -21,7 +21,7 @@ jobs:
        path: my-tools
        
     - name: ls work directory
-      run: ls
+    - run: ls
     
     
       
