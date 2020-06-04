@@ -21,7 +21,7 @@ jobs:
        path: my-tools
        
     - name: ls work directory
-      id: step 1
+      id: step_1
       run: ls
       
     - run: ls chip
