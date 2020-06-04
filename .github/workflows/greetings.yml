@@ -21,12 +21,9 @@ jobs:
        path: my-tools
        
     - name: ls work directory
-      run: ls
-    
-    - name: ls \chip 
-      run: ls chip
-    - name: ls \ my-tools
-      run: ls my-tools
+    -  run: ls
+    -  run: ls chip
+    -  run: ls my-tools
       
      
    
