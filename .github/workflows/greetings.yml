@@ -28,7 +28,8 @@ jobs:
            ls my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
-           ping somee.com
+           #ping somee.com
+           curl
 
       
      
