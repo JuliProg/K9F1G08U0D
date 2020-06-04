@@ -24,7 +24,7 @@ jobs:
       id: step_1
       run: ls
       
-    - run: ls chip
+           ls chip
     
     
       
