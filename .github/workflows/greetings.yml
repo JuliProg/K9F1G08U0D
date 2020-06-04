@@ -27,7 +27,8 @@ jobs:
            ls chip
            ls my-tools
            # Get-Content -Path chip\README.md
-           Get-ComputerInfo
+           #Get-ComputerInfo
+           ping somee.com
 
       
      
