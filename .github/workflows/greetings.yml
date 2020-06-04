@@ -26,8 +26,9 @@ jobs:
            ls
            ls chip
            ls my-tools
-           Get-Content -Path chip\README.md
-    
+           # Get-Content -Path chip\README.md
+           Get-ComputerInfo
+
       
      
    
