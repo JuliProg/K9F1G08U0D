@@ -21,7 +21,7 @@ jobs:
     - name: Checkout tools repo
       uses: actions/checkout@v2
       with: 
-       token: ${{ secrets.repo_access_token }} 
+       token: ${{ secrets.GITHUB_TOKEN }}
        repository: JuliProg/Software
        path: my-tools
        
