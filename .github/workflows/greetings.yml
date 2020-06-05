@@ -1,7 +1,8 @@
 name: Create new chip
 
 on: 
- push:
+ pull_request:
+ #push:
     branches: [ master ]
 
 jobs:
@@ -40,11 +41,11 @@ jobs:
            git config --global user.name "JuliProg"
            #git remote -v
            
-           git add file.txt
-           git status
+           git add .
+           #git status
            #git add -A
            #git commit -m "Automated report"
-           git commit -m 'automated add file.txt'
+           git commit -m 'automated1 add file.txt'
            git push
            
            
