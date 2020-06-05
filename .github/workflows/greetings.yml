@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
       with:
        #path: chip
-       token: ACCESS_TOKEN
+       ref: ${{ secrets.repo_access_token }} 
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
