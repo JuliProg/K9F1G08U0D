@@ -45,7 +45,7 @@ jobs:
            #git add -A
            #git commit -m "Automated report"
            git commit -m 'automated add file.txt'
-           #git push
+           git push
            
            
 
