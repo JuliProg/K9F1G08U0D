@@ -14,9 +14,9 @@ jobs:
       env:
          ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
       uses: actions/checkout@v2
-      #with:
+      with:
        #path: chip
-       #token: ACCESS_TOKEN
+       token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
