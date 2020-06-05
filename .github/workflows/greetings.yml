@@ -8,11 +8,11 @@ on:
 jobs:
   git_clone_to_virtual:
     runs-on: windows-latest 
-    
+    env:
+         ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
+        
     steps:
     - name: Checkout new chip repo
-      env:
-         ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
       uses: actions/checkout@v2
       with:
        #path: chip
@@ -21,6 +21,7 @@ jobs:
     - name: Checkout tools repo
       uses: actions/checkout@v2
       with: 
+       token: ACCESS_TOKEN
        repository: JuliProg/Software
        path: my-tools
        
