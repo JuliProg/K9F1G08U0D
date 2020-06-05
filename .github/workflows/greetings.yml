@@ -24,7 +24,7 @@ jobs:
       id: step_1
       run: |
            ls
-           ls chip
+           #ls chip
            ls my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
