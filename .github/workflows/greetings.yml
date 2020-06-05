@@ -11,8 +11,8 @@ jobs:
     steps:
     - name: Checkout new chip repo
       uses: actions/checkout@v2
-      with:
-       path: chip
+      #with:
+       #path: chip
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
@@ -32,6 +32,9 @@ jobs:
            #curl --help
            Set-Content -Path file.txt -Value test
            ls
+           git add .
+           git status
+           
 
       
      
