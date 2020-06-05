@@ -30,7 +30,7 @@ jobs:
            #Get-ComputerInfo
            #ping somee.com
            #curl --help
-           New-Item -Name "file.txt"
+           Set-Content -Path file.txt -Value test
            ls
 
       
