@@ -32,7 +32,7 @@ jobs:
            #curl --help
            Set-Content -Path file.txt -Value test
            ls
-           git add .
+           git add file.txt
            git status
            
 
