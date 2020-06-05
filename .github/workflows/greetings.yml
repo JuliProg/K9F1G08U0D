@@ -32,6 +32,10 @@ jobs:
            #curl --help
            Set-Content -Path file.txt -Value test
            ls
+           
+           git config --global user.email "juliprog1110.gmail.com"
+           git config --global user.name "JuliProg"
+           
            git add file.txt
            git commit -m 'add file.txt'
            git push
