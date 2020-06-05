@@ -29,7 +29,9 @@ jobs:
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
            #ping somee.com
-           curl --help
+           #curl --help
+           New-Item -Name "file.txt"
+           ls
 
       
      
