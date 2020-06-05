@@ -1,7 +1,7 @@
 name: Create new chip
 
 on: 
- push:
+ pull_request:
     branches: [ master ]
 
 jobs:
