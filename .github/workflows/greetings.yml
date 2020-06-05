@@ -1,0 +1,38 @@
+name: Create new chip
+
+on: 
+ push:
+    branches: [ master ]
+
+jobs:
+  git_clone_to_virtual:
+    runs-on: windows-latest 
+    
+    steps:
+    - name: Checkout new chip repo
+      uses: actions/checkout@v2
+      with:
+       path: chip
+
+    - name: Checkout tools repo
+      uses: actions/checkout@v2
+      with: 
+       repository: JuliProg/Software
+       path: my-tools
+       
+    - name: ls work directory
+      id: step_1
+      run: |
+           ls
+           ls chip
+           ls my-tools
+           # Get-Content -Path chip\README.md
+           #Get-ComputerInfo
+           #ping somee.com
+           #curl --help
+           Set-Content -Path file.txt -Value test
+           ls
+
+      
+     
+   
