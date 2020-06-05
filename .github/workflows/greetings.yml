@@ -40,12 +40,13 @@ jobs:
            git config --global user.name "JuliProg"
            #git remote -v
            
-           #git add file.txt
-           git add -A
+           git add file.txt
+           git status
+           #git add -A
            #git commit -m "Automated report"
            git commit -m 'automated add file.txt'
            #git push
-           git status
+           
            
 
       
