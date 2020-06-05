@@ -11,12 +11,12 @@ jobs:
     
     steps:
     - name: Checkout new chip repo
-      #env:
-         #ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
+      env:
+         ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
       uses: actions/checkout@v2
-      #with:
+      with:
        #path: chip
-       #ref: ${{ secrets.repo_access_token }} 
+       ref: $ACCESS_TOKEN
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
