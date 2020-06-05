@@ -35,10 +35,11 @@ jobs:
            
            git config --global user.email "juliprog1110.gmail.com"
            git config --global user.name "JuliProg"
+           git remote -v
            
            git add file.txt
            git commit -m 'add file.txt'
-           git push
+           #git push
            git status
            
 
