@@ -34,7 +34,7 @@ jobs:
            #Get-ComputerInfo
            #ping somee.com
            #curl --help
-           Set-Content -Path file.txt -Value test
+           Set-Content -Path CI_CD\file.txt -Value test
            ls
            
            git config --global user.email "juliprog1110.gmail.com"
