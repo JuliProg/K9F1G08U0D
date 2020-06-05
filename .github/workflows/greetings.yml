@@ -1,8 +1,8 @@
 name: Create new chip
 
 on: 
- pull_request:
- #push:
+ #pull_request:
+ push:
     branches: [ master ]
 
 jobs:
@@ -11,12 +11,12 @@ jobs:
     
     steps:
     - name: Checkout new chip repo
-      env:
-         ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
+      #env:
+         #ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
       uses: actions/checkout@v2
-      with:
+      #with:
        #path: chip
-       ref: ${{ secrets.repo_access_token }} 
+       #ref: ${{ secrets.repo_access_token }} 
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
