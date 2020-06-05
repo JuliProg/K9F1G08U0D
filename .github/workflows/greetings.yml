@@ -48,6 +48,8 @@ jobs:
            git commit -m 'automated2 add file.txt'
            git push
            
+           ls
+           
            
 
       
