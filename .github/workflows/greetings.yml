@@ -33,6 +33,8 @@ jobs:
            Set-Content -Path file.txt -Value test
            ls
            git add file.txt
+           git commit -m 'add file.txt'
+           git push
            git status
            
 
