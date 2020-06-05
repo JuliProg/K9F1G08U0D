@@ -36,6 +36,7 @@ jobs:
            #curl --help
            #Set-Content -Path CI_CD\file.txt -Value test
            $filename = Get-Date -Format 'ddMMyyyy' | new-item -path . -name $filename.txt -type file 
+           New-Item CI_CD\$(Get-Date -Format 'ddMMyyyy').txt
            ls
            
            git config --global user.email "juliprog1110.gmail.com"
