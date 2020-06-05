@@ -11,8 +11,9 @@ jobs:
     steps:
     - name: Checkout new chip repo
       uses: actions/checkout@v2
-      #with:
+      with:
        #path: chip
+       token: ${{ secrets.repo_access_token }} 
 
     - name: Checkout tools repo
       uses: actions/checkout@v2
