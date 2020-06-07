@@ -62,8 +62,8 @@ jobs:
            New-Item .\chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
            
     - name: start my tools
-      shell: pwsh  
-      run: .\my-tools\CICDassist.exe
+      #shell: pwsh  
+      run: .\my-tools\CICDassist
            
            
     - name: Push repo-changes to GitHub 
