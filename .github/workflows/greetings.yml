@@ -31,7 +31,8 @@ jobs:
   View_directory:
     runs-on: windows-latest 
       #runs-on: ubuntu-latest
-      
+    needs:  git_clone_to_virtual
+    
     steps:
      - name: view
        #working-directory: chip
