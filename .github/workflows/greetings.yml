@@ -60,10 +60,15 @@ jobs:
       run: |   
            #PowerShell command
            New-Item .\chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
-           
+    
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.5.0
+
+    
     - name: start my tools
       #shell: pwsh 
       working-directory: my-tools 
+      
       run: |
            #Provide execute permissions
            chmod 777 ./CICDassist
