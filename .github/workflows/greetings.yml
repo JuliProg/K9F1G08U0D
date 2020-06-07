@@ -10,7 +10,7 @@ jobs:
     #runs-on: windows-latest 
     runs-on: ubuntu-latest
     env:
-         ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
+         ACCESS_TOKEN: ${{ secrets.BB_PAT_FORCICDTOOLS }} 
         
     steps:
     - name: Checkout new chip repo
@@ -19,11 +19,11 @@ jobs:
        path: chip
        token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Get JPassist
+    - name: Get CICDassist
       uses: actions/checkout@v2
       with: 
-       token: ${{ secrets.GITHUB_TOKEN }}
-       repository: JuliProg/Software
+       token: ACCESS_TOKEN
+       repository: https://taraskitela@bitbucket.org/taraskitela/reset_ffh.git
        path: my-tools
     
     - name : computer info
