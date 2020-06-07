@@ -34,22 +34,22 @@ jobs:
       
     steps:
      - name: view
-       working-directory: chip
-       id: step_1
+       #working-directory: chip
+       #id: step_1
       
        #shell: pwsh
        run: |
            ls
            #ls chip
            #cd ..
-           ls ..\my-tools
+           ls my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
            #ping somee.com
            #curl --help
            #Set-Content -Path CI_CD\file.txt -Value test
            
-           New-Item CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
+           New-Item chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
            ls
            
            git config --global user.email "juliprog1110.gmail.com"
