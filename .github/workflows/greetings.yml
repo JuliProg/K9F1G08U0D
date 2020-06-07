@@ -32,7 +32,7 @@ jobs:
       
       shell: pwsh
       run: |
-           ls
+           #ls
            ls chip
            #cd ..
            ls my-tools
