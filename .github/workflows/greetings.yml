@@ -68,7 +68,7 @@ jobs:
       shell: pwsh 
       run : .\my-tools\CICDassist.dll
     
-    - name: start my tools from my-self publish
+    #- name: start my tools from my-self publish
       ##shell: pwsh 
       #working-directory: my-tools 
       
