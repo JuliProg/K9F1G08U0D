@@ -32,7 +32,7 @@ jobs:
       
       shell: pwsh
       run: |
-           #ls
+           ls
            ls chip
            #cd ..
            ls my-tools
@@ -44,7 +44,12 @@ jobs:
            
            New-Item chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
            #ls
+                                    
            
+    - name: Push chip-changes to GitHub 
+      working-directory: chip
+      
+      run: |
            git config --global user.email "juliprog1110.gmail.com"
            git config --global user.name "JuliProg"
            #git remote -v
@@ -55,9 +60,6 @@ jobs:
            #git commit -m "Automated report"
            git commit -m 'automated2 add file.txt'
            git push origin master
-           
-           ls
-    
     
   View_directory:
     runs-on: windows-latest 
