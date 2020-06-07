@@ -65,8 +65,9 @@ jobs:
       uses: actions/setup-dotnet@v1.5.0
 
     - name: start my tools by actions/setup-dotnet@v1.5.0
+      working-directory: my-tools
       shell: pwsh 
-      run : dotnet .\my-tools\CICDassist.dll
+      run : dotnet CICDassist.dll
     
     #- name: start my tools from my-self publish
       ##shell: pwsh 
