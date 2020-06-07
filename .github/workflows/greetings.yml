@@ -32,10 +32,10 @@ jobs:
       
       #shell: pwsh
       run: |
-           ls
-           ls chip
+           ls -R
+           #ls chip
            #cd ..
-           ls my-tools
+           #ls my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
            #ping somee.com
