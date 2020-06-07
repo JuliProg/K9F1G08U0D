@@ -50,8 +50,8 @@ jobs:
            #curl --help
            #Set-Content -Path CI_CD\file.txt -Value test
            
-           New-Item chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
-           ls
+           #New-Item chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
+           #ls
            
            git config --global user.email "juliprog1110.gmail.com"
            git config --global user.name "JuliProg"
