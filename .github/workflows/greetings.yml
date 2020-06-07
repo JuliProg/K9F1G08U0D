@@ -22,8 +22,8 @@ jobs:
     - name: Get CICDassist
       uses: actions/checkout@v2
       with: 
-       token: ACCESS_TOKEN
-       repository: https://taraskitela@bitbucket.org/taraskitela/reset_ffh.git
+       token: ${{ secrets.GITHUB_TOKEN }}
+       repository: JuliProg/Software
        path: my-tools
     
     - name : computer info
