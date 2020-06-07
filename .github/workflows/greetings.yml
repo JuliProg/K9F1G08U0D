@@ -34,8 +34,8 @@ jobs:
       run: |
            ls
            #ls chip
-           cd ..
-           ls my-tools
+           #cd ..
+           ls ..\my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
            #ping somee.com
