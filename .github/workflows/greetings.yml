@@ -26,6 +26,11 @@ jobs:
        repository: JuliProg/Software
        path: my-tools
     
+    - name : computer info
+      shell: pwsh
+      run: Get-ComputerInfo
+      
+      
     - name: view directoris
        #working-directory: chip
        #id: step_1
