@@ -19,23 +19,30 @@ jobs:
        path: chip
        token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Checkout tools repo
+    - name: Get JPassist
       uses: actions/checkout@v2
       with: 
        token: ${{ secrets.GITHUB_TOKEN }}
        repository: JuliProg/Software
        path: my-tools
-       
-    - name: ls work directory
-      working-directory: chip
-      id: step_1
+    
+    
+    
+  View directory:
+    runs-on: windows-latest 
+      #runs-on: ubuntu-latest
       
-      shell: pwsh
-      run: |
+    steps:
+     - name: view
+       working-directory: chip
+       id: step_1
+      
+       #shell: pwsh
+       run: |
            ls
            #ls chip
            #cd ..
-           ls ../my-tools
+           ls ..\my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
            #ping somee.com
