@@ -26,7 +26,7 @@ jobs:
        repository: JuliProg/Software
        path: my-tools
     
-    - name: view
+    - name: view directoris
        #working-directory: chip
        #id: step_1
       
@@ -42,11 +42,20 @@ jobs:
            #curl --help
            #Set-Content -Path CI_CD\file.txt -Value test
            
-           New-Item .\chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
-           #ls
-                                    
+          
+    - name: delete file from repo  
+      run: |   
+           #PowerShell command
+           Remove-Item  .\chip\CI_CD\*.txt
            
-    - name: Push chip-changes to GitHub 
+           
+    - name: add file to repo  
+      run: |   
+           #PowerShell command
+           New-Item .\chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
+           
+           
+    - name: Push repo-changes to GitHub 
       working-directory: chip
       
       run: |
