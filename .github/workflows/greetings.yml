@@ -16,7 +16,7 @@ jobs:
     - name: Checkout new chip repo
       uses: actions/checkout@v2
       with:
-       #path: chip
+       path: chip
        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout tools repo
@@ -31,7 +31,7 @@ jobs:
       shell: pwsh
       run: |
            ls
-           #ls chip
+           ls chip
            ls my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
