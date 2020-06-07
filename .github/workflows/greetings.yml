@@ -27,8 +27,8 @@ jobs:
        path: my-tools
     
     - name : computer info
-      shell: pwsh
-      run: Get-ComputerInfo
+      #shell: pwsh
+      run: uname -v
       
       
     - name: view directoris
