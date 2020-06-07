@@ -7,7 +7,8 @@ on:
 
 jobs:
   git_clone_to_virtual:
-    runs-on: windows-latest 
+    #runs-on: windows-latest 
+    runs-on: ubuntu-latest
     env:
          ACCESS_TOKEN: ${{ secrets.repo_access_token }} 
         
@@ -27,6 +28,7 @@ jobs:
        
     - name: ls work directory
       id: step_1
+      shell: pwsh
       run: |
            ls
            #ls chip
