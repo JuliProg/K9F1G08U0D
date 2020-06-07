@@ -27,7 +27,9 @@ jobs:
        path: my-tools
        
     - name: ls work directory
+      working-directory: chip
       id: step_1
+      
       shell: pwsh
       run: |
            ls
