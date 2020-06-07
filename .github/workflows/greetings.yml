@@ -58,7 +58,7 @@ jobs:
            
     - name: start my tools
       shell: pwsh  
-      run: .\my-tools\CICDassist
+      run: .\my-tools\CICDassist.exe
            
            
     - name: Push repo-changes to GitHub 
