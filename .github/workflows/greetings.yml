@@ -79,15 +79,31 @@ jobs:
   View_directory:
     runs-on: windows-latest 
       #runs-on: ubuntu-latest
-    needs:  git_clone_to_virtual
+    #needs:  git_clone_to_virtual
+    
+    
+    
     
     steps:
-     - name: view on windows
+     
+    - name: Get JPassist
+      uses: actions/checkout@v2
+      with: 
+       token: ${{ secrets.GITHUB_TOKEN }}
+       repository: JuliProg/Software
+       path: my-tools
+       
+       
+       
+    - name: view on windows
        #working-directory: chip
        #id: step_1
       
        #shell: pwsh
-       run: ls
+      run: ls -R
+      
+    - name: start my tools
+      run: .\my-tools\CICDassist.exe
            
 
       
