@@ -26,31 +26,23 @@ jobs:
        repository: JuliProg/Software
        path: my-tools
     
-    
-    
-  View_directory:
-    runs-on: windows-latest 
-      #runs-on: ubuntu-latest
-    needs:  git_clone_to_virtual
-    
-    steps:
-     - name: view
+    - name: view
        #working-directory: chip
        #id: step_1
       
-       #shell: pwsh
-       run: |
+      shell: pwsh
+      run: |
            ls
-           #ls chip
+           ls chip
            #cd ..
-           #ls my-tools
+           ls my-tools
            # Get-Content -Path chip\README.md
            #Get-ComputerInfo
            #ping somee.com
            #curl --help
            #Set-Content -Path CI_CD\file.txt -Value test
            
-           #New-Item chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
+           New-Item chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
            #ls
            
            git config --global user.email "juliprog1110.gmail.com"
@@ -65,7 +57,20 @@ jobs:
            git push origin master
            
            ls
-           
+    
+    
+  View_directory:
+    runs-on: windows-latest 
+      #runs-on: ubuntu-latest
+    needs:  git_clone_to_virtual
+    
+    steps:
+     - name: view on windows
+       #working-directory: chip
+       #id: step_1
+      
+       #shell: pwsh
+       run: ls
            
 
       
