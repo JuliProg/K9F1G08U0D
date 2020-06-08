@@ -15,6 +15,7 @@ namespace K9F1G08U0D
         {
             myChip.devManuf = "SAMSUNG";
             myChip.name = "K9F1G08U0D";
+            myChip.chipID = "ECF1001540";
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
