@@ -10,12 +10,13 @@ namespace K9F1G08U0D
         [Export("Chip")]
         ChipPrototype myChip = new ChipPrototype();
 
+        #region Chip parameters
 
         ChipAssembly()
         {
             myChip.devManuf = "SAMSUNG";
             myChip.name = "K9F1G08U0D";
-            myChip.chipID = "ECF1001540";
+            myChip.chipID = "ECF1001540";      // device ID - ECh F1h 00h 15h 40h (k9f1g08u0d_00.pdf page 36)
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
@@ -27,6 +28,10 @@ namespace K9F1G08U0D
             myChip.rowAdrCycles = 2;           // cycles for row addressing 
             myChip.vcc = Vcc.v3_3;             // supply voltage
 
+        #endregion
+
+
+            #region Chip operations
 
             //------- Add chip operations ----------------------------------------------------
 
@@ -34,6 +39,12 @@ namespace K9F1G08U0D
                    Operations("Erase_60h_D0h").
                    Operations("Read_00h_30h").
                    Operations("PageProgram_80h_10h");
+
+            #endregion
+
+
+
+            #region Chip registers (optional)
 
             //------- Add chip registers (optional)----------------------------------------------------
 
@@ -50,8 +61,13 @@ namespace K9F1G08U0D
                 Size(5).
                 Operations("ReadId_90h").               
                 Interpretation(ID_interpreting);          // From here
-                                            
+
+            #endregion
+
+
         }
+
+        #region Interpretation of ID-register values ​​(optional)
 
         public string ID_interpreting(Register register)
         {
@@ -246,6 +262,8 @@ namespace K9F1G08U0D
             }
             return str_result;
         }
+
+        #endregion
     }
 
 }
