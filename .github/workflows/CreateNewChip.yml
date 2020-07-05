@@ -125,11 +125,13 @@ jobs:
            #git commit -m "Automated report"
            git commit -m 'automated add new chip'
            git push origin master
-           
-    - name: Delay
-      working-directory: my-tools
-      run : dotnet CICDassist.dll --delay 2000
+   
+    - name: View csproj
+      shell: pwsh
+      working-directory: chip
+      run: get-content .\*\*.csproj
     
+   
   Bild_new_chip:
     runs-on: windows-latest 
       ##runs-on: ubuntu-latest
