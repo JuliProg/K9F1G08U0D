@@ -1,4 +1,4 @@
-name: Create new chip
+name: Refactoring new repo
 env:
       NEW_CHIP: ${{ github.event.client_payload.newChip }}
       TEMPLATE_CHIP: ${{ github.event.client_payload.templateChip }}
@@ -8,7 +8,7 @@ on:
  #push:
   repository_dispatch:
     branches: [ master ]
-    types: on-create-new-chip
+    types: on-refactoring-new-repo
     
 
 jobs:
@@ -91,8 +91,8 @@ jobs:
            ##PowerShell command
            #New-Item .\chip\CI_CD\$(Get-Date -Format 'mmHHddMMyyyy').txt
     
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1.5.0
+    #- name: Setup .NET Core SDK
+      #uses: actions/setup-dotnet@v1.5.0
 
     #- name: CICDassist arguments
       #run: |
@@ -104,7 +104,7 @@ jobs:
       working-directory: my-tools
       #shell: pwsh 
       #PowerShell command .Start mytools
-      run : dotnet CICDassist.dll --create $NEW_CHIP $TEMPLATE_CHIP
+      run : dotnet CICDassist.dll --refactoring $NEW_CHIP $TEMPLATE_CHIP
     
     #- name: start my tools from my-self publish        
       ##shell: pwsh 
@@ -132,70 +132,7 @@ jobs:
            git commit -m 'automated add new chip'
            git push origin master
     
-  Bild_new_chip:
-    runs-on: windows-latest 
-      ##runs-on: ubuntu-latest
-    needs:  refactoring_repo
-    
-    
-    
-    
-    steps:
-     
-    #- name: Get JPassist
-      #uses: actions/checkout@v2
-      #with: 
-       #token: ${{ secrets.GITHUB_TOKEN }}
-       #repository: JuliProg/Software
-       #path: my-tools
-       
-    - name: Checkout new chip repo
-      uses: actions/checkout@v2
-      with:
-       path: chip
-       token: ${{ secrets.GITHUB_TOKEN }} 
-
-    - name: Get new chip dependency
-      uses: actions/checkout@v2
-      with: 
-       token: ${{ secrets.GITHUB_TOKEN }}
-       repository: JuliProg/Software
-       path: references
-
-    - name: Get CICDassist
-      uses: actions/checkout@v2
-      with: 
-       token: ${{ secrets.GITHUB_TOKEN }}
-       repository: JuliProg/CICDtools
-       path: my-tools
-       
-    #- name: view directoris on windows
-       ##working-directory: chip
-       ##id: step_1
-      
-       ##shell: pwsh
-      #run: ls -R
-            
-      
-    - name: Prepaire project enviroment 
-      working-directory: my-tools
-      #shell: pwsh 
-      #PowerShell command .Start mytools
-      run : .\CICDassist.exe --prebuild
-           
-    
-    
-    - name: build new chip
-      working-directory: chip
-      run: dotnet build -o ..\publish
-    #- name: start my tools on win
-      #run: .\my-tools\CICDassist.exe
-           
-    - name: publish new chip
-      env: 
-        MYSERVERPAT :  ${{ secrets.JP_PAT }} 
-      working-directory: my-tools
-      run : .\CICDassist.exe --publish "$env:NEW_CHIP" "$env:MYSERVERPAT"
+  
       
      
    
