@@ -81,7 +81,9 @@ namespace K9F1G08U0D
 
         #region Interpretation of ID-register values ​​(optional)
 
-        public string ID_interpreting(Register register)      #endregion
+        public string ID_interpreting(Register register) 
+            
+        #endregion
         {
             byte[] content = register.GetContent();
 
