@@ -126,13 +126,10 @@ jobs:
            git commit -m 'automated add new chip'
            git push origin master
    
-    - name: View csproj
-      shell: pwsh
-      working-directory: chip
-      run: get-content .\*\*.csproj
+    
     
    
-  Bild_new_chip:
+  Build_new_chip:
     runs-on: windows-latest 
       ##runs-on: ubuntu-latest
     needs:  refactoring_repo
@@ -154,6 +151,13 @@ jobs:
       with:
        path: chip
        token: ${{ secrets.GITHUB_TOKEN }} 
+       
+    - name: view directoris on windows
+      working-directory: chip
+       ##id: step_1
+      
+       ##shell: pwsh
+      run: ls -R
 
     - name: Get new chip dependency
       uses: actions/checkout@v2
