@@ -152,13 +152,7 @@ jobs:
        path: chip
        token: ${{ secrets.GITHUB_TOKEN }} 
        
-    - name: view directoris on windows
-      working-directory: chip
-       ##id: step_1
-      
-       ##shell: pwsh
-      run: ls -R
-
+   
     - name: Get new chip dependency
       uses: actions/checkout@v2
       with: 
@@ -179,7 +173,20 @@ jobs:
       
        ##shell: pwsh
       #run: ls -R
-            
+    - name: start my tools by actions/setup-dotnet@v1.5.0
+      working-directory: my-tools
+      #shell: pwsh 
+      #PowerShell command .Start mytools
+      run : .\CICDassist.exe --create $NEW_CHIP $TEMPLATE_CHIP        
+      
+      
+    - name: view directoris on windows
+      working-directory: chip
+       ##id: step_1
+      
+       ##shell: pwsh
+      run: ls -R
+
       
     - name: Prepaire project enviroment 
       working-directory: my-tools
