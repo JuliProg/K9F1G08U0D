@@ -173,11 +173,11 @@ jobs:
       
        ##shell: pwsh
       #run: ls -R
-    - name: start my tools by actions/setup-dotnet@v1.5.0
+    - name: refactoring new repo
       working-directory: my-tools
       #shell: pwsh 
       #PowerShell command .Start mytools
-      run : .\CICDassist.exe --create $NEW_CHIP $TEMPLATE_CHIP        
+      run : .\CICDassist.exe --create "$env:NEW_CHIP" "$env:TEMPLATE_CHIP"        
       
       
     - name: view directoris on windows
