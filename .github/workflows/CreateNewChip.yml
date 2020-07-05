@@ -181,7 +181,9 @@ jobs:
       #PowerShell command .Start mytools
       run : .\CICDassist.exe --prebuild
            
-    
+    - name: View csproj
+      working-directory: chip
+      run: get-content .\*\*.csproj
     
     - name: build new chip
       working-directory: chip
