@@ -94,12 +94,6 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.5.0
 
-    #- name: CICDassist arguments
-      #run: |
-          #echo "new chip : $NEW_CHIP "
-          #echo "template chip : $TEMPLATE_CHIP "
-     
-     
     - name: start my tools by actions/setup-dotnet@v1.5.0
       working-directory: my-tools
       #shell: pwsh 
@@ -131,6 +125,10 @@ jobs:
            #git commit -m "Automated report"
            git commit -m 'automated add new chip'
            git push origin master
+           
+    - name: Delay
+      working-directory: my-tools
+      run : dotnet CICDassist.dll --delay 2000
     
   Bild_new_chip:
     runs-on: windows-latest 
