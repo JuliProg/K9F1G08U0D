@@ -1,3 +1,4 @@
+![Create new chip](https://github.com/JuliProg/K9F1G08U0D/workflows/Create%20new%20chip/badge.svg?event=repository_dispatch)
 # Join the development of the project ([list of tasks](https://github.com/users/JuliProg/projects/1))
 
 
