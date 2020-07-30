@@ -64,7 +64,8 @@ namespace K9F1G08U0D
                 "Status Register").
                 Size(1).
                 Operations("ReadStatus_70h").
-                Interpretation("StatusInterpreting@v1");   //From ChipPart\[some].dll
+                Interpretation("SR_Interpreted").   //From ChipPart\SR_Interpreted.dll
+                UseAsStatusRegister();
 
 
 
@@ -81,7 +82,9 @@ namespace K9F1G08U0D
 
         #region Interpretation of ID-register values ​​(optional)
 
-        public string ID_interpreting(Register register)
+        public string ID_interpreting(Register register)   
+        
+        #endregion
         {
             byte[] content = register.GetContent();
 
@@ -104,7 +107,7 @@ namespace K9F1G08U0D
             messsage += ID_decoding(content[4], 4) + Environment.NewLine;
 
             return messsage;
-        }
+        }  
         private string ID_decoding(byte bt, int pos)
         {
             string str_result = String.Empty;
@@ -275,7 +278,7 @@ namespace K9F1G08U0D
             return str_result;
         }
 
-        #endregion
+       
     }
 
 }
