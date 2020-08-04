@@ -9,20 +9,23 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
 
 <section class = "listing">
 
+#
 ```c#
- public class ChipAssembly
+
+    public class ChipAssembly
     {
         [Export("Chip")]
         ChipPrototype myChip = new ChipPrototype();
 ```
-
-# Chip parameters
-
+# Chip parameters
 ```c#
-  ChipAssembly()
+
+
+        ChipAssembly()
         {
             myChip.devManuf = "SAMSUNG";
             myChip.name = "K9F1G08U0D";
+            myChip.chipID = "ECF1001540";      // device ID - ECh F1h 00h 15h 40h (k9f1g08u0d_00.pdf page 36)
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
@@ -34,29 +37,31 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
             myChip.rowAdrCycles = 2;           // cycles for row addressing 
             myChip.vcc = Vcc.v3_3;             // supply voltage
 
-  ```   
-
-# Chip operations
-
+```
+# Chip operations
 ```c#
-//------- Add chip operations ----------------------------------------------------
+
+
+            //------- Add chip operations ----------------------------------------------------
 
             myChip.Operations("Reset_FFh").
                    Operations("Erase_60h_D0h").
                    Operations("Read_00h_30h").
                    Operations("PageProgram_80h_10h");
+
 ```
-
-# Chip registers (optional)
-
+# Chip registers (optional)
 ```c#
-//------- Add chip registers ----------------------------------------------------
+
+
+            //------- Add chip registers (optional)----------------------------------------------------
 
             myChip.registers.Add(
                 "Status Register").
                 Size(1).
                 Operations("ReadStatus_70h").
-                Interpretation("StatusInterpreting@v1");   //From ChipPart\[some].dll
+                Interpretation("SR_Interpreted").   //From ChipPart\SR_Interpreted.dll
+                UseAsStatusRegister();
 
 
 
@@ -65,16 +70,16 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                 Size(5).
                 Operations("ReadId_90h").               
                 Interpretation(ID_interpreting);          // From here
-                                            
+
 ```
-
-# Interpretation of ID-register values ​​(optional)
-
+# Interpretation of ID-register values ​​(optional)
 ```c#
-          public string ID_interpreting(Register register)
-          private string ID_decoding(byte bt, int pos)
-```
 
+
+        public string ID_interpreting(Register register)   
+        
+```
 </section>
+
 
 footer

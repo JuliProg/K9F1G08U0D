@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="NAND_Prog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\NAND_Prog\NAND_Prog\bin\Debug\NAND_Prog.exe</HintPath>
+      <HintPath>D:\a\K9F1G08U0D\K9F1G08U0D\references\NAND_Prog.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -71,10 +71,6 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>call xcopy /d /y $(TargetPath) ..\..\..\..\..\NAND_Prog\ChipSource\
-call xcopy $(TargetPath)  ..\..\..\..\..\JuliProgServerPart\WebAPI\WebAPI\FileStorage\ChipImplement  /d /y /f</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
