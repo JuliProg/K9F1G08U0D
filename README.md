@@ -10,8 +10,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
 
 <section class = "listing">
 
-#
-
+#
 ```c#
 
     public class ChipAssembly
@@ -19,8 +18,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
         [Export("Chip")]
         ChipPrototype myChip = new ChipPrototype();
 ```
-# Chip parameters
-
+# Chip parameters
 ```c#
 
 
@@ -41,8 +39,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
             myChip.vcc = Vcc.v3_3;             // supply voltage
 
 ```
-# Chip operations
-
+# Chip operations
 ```c#
 
 
@@ -54,8 +51,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                    Operations("PageProgram_80h_10h");
 
 ```
-# Chip registers (optional)
-
+# Chip registers (optional)
 ```c#
 
 
@@ -77,8 +73,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                 Interpretation(ID_interpreting);          // From here
 
 ```
-# Interpretation of ID-register values ​​(optional)
-
+# Interpretation of ID-register values ​​(optional)
 ```c#
 
 
@@ -86,6 +81,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
         
 ```
 </section>
+
 
 
 footer
