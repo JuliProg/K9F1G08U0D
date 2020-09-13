@@ -54,6 +54,7 @@ jobs:
       env: 
         MYSERVERPAT :  ${{ secrets.JP_PAT }} 
       working-directory: my-tools
+      if: github.repository_owner == 'JuliProg'
       run : .\CICDassist.exe --publish "$env:NEW_CHIP" "$env:MYSERVERPAT"
     
     - name: Push repo-changes to GitHub
