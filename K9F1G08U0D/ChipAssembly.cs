@@ -87,6 +87,7 @@ namespace K9F1G08U0D
         #endregion
         {
             byte[] content = register.GetContent();
+            string messsage;
 
 
             if (BitConverter.ToString(content).Replace("-", "") != "ECF1001540")
@@ -97,7 +98,7 @@ namespace K9F1G08U0D
            
             
             
-            string messsage = "1st Byte    Maker Code = " + content[0].ToString("X2") + Environment.NewLine;
+            messsage += "1st Byte    Maker Code = " + content[0].ToString("X2") + Environment.NewLine;
             messsage += ID_decoding(content[0],0) + Environment.NewLine;
 
             messsage += "2nd Byte    Device Code = " + content[1].ToString("X2") + Environment.NewLine;
