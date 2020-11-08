@@ -87,7 +87,7 @@ namespace K9F1G08U0D
         #endregion
         {
             byte[] content = register.GetContent();
-            string messsage;
+            string messsage = String.Empty;
 
 
             if (BitConverter.ToString(content).Replace("-", "") != "ECF1001540")
