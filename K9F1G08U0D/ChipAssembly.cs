@@ -90,11 +90,11 @@ namespace K9F1G08U0D
             string messsage = String.Empty;
 
 
-            if (BitConverter.ToString(content).Replace("-", "") != "ECF1001540")
-            {
-                messsage += "This chip is not a K9F1G08U0D";
-                return messsage;
-            }
+           // if (BitConverter.ToString(content).Replace("-", "") != "ECF1001540")
+           // {
+           //     messsage += "This chip is not a K9F1G08U0D";
+           //     return messsage;
+           // }
            
             
             
