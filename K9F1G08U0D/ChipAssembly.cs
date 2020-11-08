@@ -89,8 +89,14 @@ namespace K9F1G08U0D
             byte[] content = register.GetContent();
 
 
-            //BitConverter.ToString(register.GetContent(), 0, 1)
-            //BitConverter.ToString(register.GetContent(), 1, 1)
+            if (BitConverter.ToString(content).Replace("-", "") != "ECF1001540")
+            {
+                messsage += "This chip is not a K9F1G08U0D";
+                return messsage;
+            }
+           
+            
+            
             string messsage = "1st Byte    Maker Code = " + content[0].ToString("X2") + Environment.NewLine;
             messsage += ID_decoding(content[0],0) + Environment.NewLine;
 
