@@ -8,7 +8,7 @@ namespace K9F1G08U0D
      use the design :
 
       # region
-         <some code>
+         <some code> 
       # endregion
 
     for automatically include <some code> in the READMY.md file in the repository
