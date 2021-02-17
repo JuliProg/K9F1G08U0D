@@ -55,7 +55,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
 ```c#
 
             
-            //------- Select the Initial Invalid Block (s) algorithm    https://github.com/JuliProg/Wiki/wiki/InitialInvalidBlock-----------
+            //------- Select the Initial Invalid Block (s) algorithm    https://github.com/JuliProg/Wiki/wiki/Initiate-Invalid-Block-----------
                 
             myChip.InitialInvalidBlock = "InitInvalidBlock_v1";
                 
@@ -90,6 +90,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
         
 ```
 </section>
+
 
 
 
