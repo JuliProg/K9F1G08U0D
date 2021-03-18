@@ -14,15 +14,21 @@ namespace K9F1G08U0D
     for automatically include <some code> in the READMY.md file in the repository
     */
 
-    #region
+   
     public class ChipAssembly
     {
         [Export("Chip")]
         ChipPrototype myChip = new ChipPrototype();
-        #endregion
+
 
 
         #region Chip parameters
+
+        //--------------------Vendor Specific Pin configuration---------------------------
+
+        //  VSP1(38pin) - NC    
+        //  VSP2(35pin) - NC
+        //  VSP3(20pin) - NC
 
         ChipAssembly()
         {
