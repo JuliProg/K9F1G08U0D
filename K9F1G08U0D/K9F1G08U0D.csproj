@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAND_Prog">
-      <HintPath>..\..\..\NAND_Prog\NAND_Prog\bin\Debug\NAND_Prog.exe</HintPath>
+      <HintPath>D:\a\K9F1G08U0D\K9F1G08U0D\references\NAND_Prog.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
